@@ -1,5 +1,5 @@
-libname panel "C:\Users\jeremy.hervelin\Desktop\CH19";
-libname gene2004 "C:\Users\jeremy.hervelin\Desktop\CH19\G2004";
+libname panel "";
+libname gene2004 "";
 
 /* ------------------------------
 Creation du panel generation 2004
@@ -8,11 +8,11 @@ Creation du panel generation 2004
 data panel;
 	set gene2004.individu_completvge;
 	/* filtre */
-	/*if q16 = "2"; interruption des études avant 2010 = non -> pas disponible : attention à échantillon*/
-	if q34 in ("2", "3", "4", "5"); /*orientation après la 3è = CAP-BEP*/
+	/*if q16 = "2"; interruption des Ã©tudes avant 2010 = non -> pas disponible : attention Ã  Ã©chantillon*/
+	if q34 in ("2", "3", "4", "5"); /*orientation aprÃ¨s la 3Ã¨ = CAP-BEP*/
 	if capbe = "1"; /*sortant de cap-bep = oui*/
-	if niveau in ("5", "5b"); /*plus haut diplôme obtenu = cap-bep*/
-	/* remplissage selon le timing de l'enquête
+	if niveau in ("5", "5b"); /*plus haut diplÃ´me obtenu = cap-bep*/
+	/* remplissage selon le timing de l'enquÃªte
 	if mois43 = "   ." then mois43 = mois42;
 	if mois44 = "   ." then mois44 = mois42;
 	if mois45 = "   ." then mois45 = mois42;
@@ -69,7 +69,7 @@ quit; /*242,508 obs obs*/
 data panel;
 	set panel;
 
-	/* numéro de la séquence */
+	/* numÃ©ro de la sÃ©quence */
 	seq = input(sequence, 2.);
 	if seq = . then seq = 0;
 
@@ -95,12 +95,12 @@ data panel;
 		remuneration_fin = salprfin;
 	end;
 
-	/* catégorie à l'embauche */
+	/* catÃ©gorie Ã  l'embauche */
 	if situation = "Emploi" then do;
 		pcs = pcs_emb;
 	end;
 
-	/* secteur d'activité */
+	/* secteur d'activitÃ© */
 	if situation = "Emploi" then do;
 		naf = nes;
 	end;
@@ -264,7 +264,7 @@ data panel;
 		end;
 		else entreprise_apprentissage = "";
 
-		/* départ entreprise */
+		/* dÃ©part entreprise */
 		if ap5a = "1" then depart_entr_apprentissage = 1;
 		else if ap5a = "2" then depart_entr_apprentissage = 0;
 		else depart_entr_apprentissage = .;
@@ -289,14 +289,14 @@ data panel;
 	if q7b = "1" then diplome = 1;
 	else diplome = 0;
 
-	/* âge a la sortie de formation */
+	/* Ã¢ge a la sortie de formation */
 	age_sortie_formation = age04;
 
 	/* sexe */
 	if q1 = "2" then femme = 1;
 	else femme = 0;
 
-	/* lieu de résidence à la date de l'enquête */
+	/* lieu de rÃ©sidence Ã  la date de l'enquÃªte */
 	rename depinter = dep_residence;
 
 	/* redoublement avant la 6e */
@@ -324,7 +324,7 @@ data panel;
 	else if lieunper1 in ("01", "02", "03", "04", "05") then pays_naissance_pere = "Europe";
 	else if lieunper1 = "09" then pays_naissance_pere = "Asie";
 	else if lieunper1 = "08" then pays_naissance_pere = "Afrique";
-	else if lieunper1 = "10" then pays_naissance_pere = "Amérique";
+	else if lieunper1 = "10" then pays_naissance_pere = "AmÃ©rique";
 	else if lieunper1 in ("06", "07") then pays_naissance_pere = "Pays arabes";
 	else pays_naissance_pere = "";
 
@@ -334,7 +334,7 @@ data panel;
 	else if lieunmer1 in ("01", "02", "03", "04", "05") then pays_naissance_mere = "Europe";
 	else if lieunmer1 = "09" then pays_naissance_mere = "Asie";
 	else if lieunmer1 = "08" then pays_naissance_mere = "Afrique";
-	else if lieunmer1 = "10" then pays_naissance_mere = "Amérique";
+	else if lieunmer1 = "10" then pays_naissance_mere = "AmÃ©rique";
 	else if lieunmer1 in ("06", "07") then pays_naissance_mere = "Pays arabes";
 	else pays_naissance_mere = "";
 
@@ -370,7 +370,7 @@ data panel;
 	/* duree de la formation initiale */
 	if situation = "Formation initiale" and duree = . then duree = age_sortie_formation - 6;
 
-	/* source des données */
+	/* source des donnÃ©es */
 	generation = "G2004";
 
 	/* -- SUPRESSION DES VARIABLES INITIALES -- */
@@ -383,7 +383,7 @@ run; /*242,508 obs*/
 
 /* specialite du diplome */
 proc import out=diplome datafile="C:\Users\jeremy.hervelin\Desktop\CH19\Annexes\specialite_diplome.xlsx" dbms=excelcs replace;
-range="Spécialités$"; run;
+range="SpÃ©cialitÃ©s$"; run;
 
 proc sort data=diplome nodupkey; by impsp; run;
 
