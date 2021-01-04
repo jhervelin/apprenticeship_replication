@@ -1,12 +1,8 @@
 ** définition des chemins et accès
 
-global chemindata = "/Users/jhervelin/Documents/Doctorat/Articles/Cahuc_Hervelin/Data/Database"
-global cheminprog = "/Users/jhervelin/Documents/Doctorat/Articles/Cahuc_Hervelin/Data/Program"
-global cheminout = "/Users/jhervelin/Documents/Doctorat/Articles/Cahuc_Hervelin/Data/Outputs"
-
-*global chemindata="/Users/pierrecahuc/Dropbox/Testing/Testing_Formations/Cahuc_Hervelin/Data/Database"
-*global cheminprog="/Users/pierrecahuc/Dropbox/Testing/Testing_Formations/Cahuc_Hervelin/Data/Program"
-*global cheminout="/Users/pierrecahuc/Dropbox/Testing/Testing_Formations/Cahuc_Hervelin/Data/Outputs/alternate"
+global chemindata = ""
+global cheminprog = ""
+global cheminout = ""
 
 
 ** ouverture de la table du testing 
