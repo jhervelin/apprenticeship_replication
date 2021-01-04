@@ -6,5 +6,5 @@ data and program replication for "Apprenticeship and Youth Unemployment" by Pier
 - testing.do: program for analyzing the correspondence study in Section IV and Appendix A.4
 
 <i>National survey</i>
-- panel_generation.dta: national survey database
+- panel_generation.dta: pooled and anonymized national survey database
 - generation.do: program for analyzing the national survey in Section V
