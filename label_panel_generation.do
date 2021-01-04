@@ -1,4 +1,4 @@
-cd "C:\Users\jeremy.hervelin\Desktop\CH19"
+cd ""
 
 use panel_generation, clear
 
