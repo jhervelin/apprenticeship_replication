@@ -1,4 +1,4 @@
-# jhr_submission
+# Paper replication
 data and program replication for "Apprenticeship and Youth Unemployment" by Pierre Cahuc (Sciences Po, IZA, CEPR) and Jérémy Hervelin (CREST-ENSAE):
 
 <i>Correspondence study</i>
