@@ -95,21 +95,16 @@ erase $chemindata/evolution.dta
 ** transitions chômage -> emploi
 
 * embauche dans entreprise de formation
-cap drop type_transition
-gen type_transition = "Meme entreprise" if travail_anterieur_entreprise == 1
-replace type_transition = "Nouvelle entreprise" if travail_anterieur_entreprise == 0
-replace type_transition = "Pas d'entreprise" if missing(type_transition)
-
-cap drop tretention_entreprise
-gen tretention_entreprise = (type_transition == "Meme entreprise" & date <14)
+cap drop tp
 cap drop retention_entreprise
-bysort ident: egen retention_entreprise = max(tretention_entreprise) 
-
-tab retention_entreprise apprentissage , column
-
-* Autre façon de calculer embauche dans entreprise de formation
-
-sum travail_anterieur_entreprise if apprentissage==1 & situation[_n-1]=="Formation initiale" & (situation=="Emploi permanent" | situation=="Emploi temporaire")
+sort ident date
+gen tp = 1 if travail_anterieur_entreprise[_n] == 1 & situation[_n-1]=="Formation initiale"
+replace tp=1 if travail_anterieur_entreprise[_n] == 1 & situation[_n-2]=="Formation initiale" & (situation[_n-1]!=("Emploi permanent") & situation[_n-1]!=("Emploi temporaire")  & situation[_n-1]!=("Independant"))
+replace tp = 0 if missing(tp)
+replace tp = embauche_entr_appr if apprentissage == 1 & generation == "G2004"
+replace tp = . if generation == "G2007"
+bysort ident: egen retention_entreprise = max(tp)
+tab retention_entreprise apprentissage [iweight=pondef], col
 
 * création des variables de contrôle pour les régressions
 tab age_sortie_formation, gen(age_sortie_formation_)
